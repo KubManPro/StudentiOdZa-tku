@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studentská E-learning Platforma - Vzdělání pro každého</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body class="light-theme">
+    
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>⚙️ Nastavení</h2>
+            <span class="close-sidebar-btn" onclick="toggleSettings()">&times;</span>
+        </div>
+        <div class="sidebar-content"> 
+            <div class="setting-item">
+                <span>Téma</span>
+                <button onclick="toggleTheme()" class="theme-toggle-btn">☀️ Light / 🌙 Dark</button>
+            </div>
+            
+            <div class="setting-item">
+                <span>Povolit oznámení</span>
+                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+            </div>
+        </div>
+    </div>
+    
+    <header>
+        <div class="logo-area">
+            <button id="menu-btn" onclick="toggleSettings()">☰</button> 
+            <h1>Platforma pro studenty</h1>
+        </div>
+        
+        <nav>
+            <a href="#" id="auth-link" onclick="showForm('login')">Přihlášení/Registrace</a>
+            <a href="#" id="profile-nav-link" onclick="showProfile()" style="display: none;">Můj Profil</a> 
+            <a href="#" id="logout-link" onclick="logout()" style="display: none;">Odhlásit se</a>
+        </nav>
+    </header>
+
+    <main id="kurzy">
+        <h2 id="main-heading">📚 Vyber si úroveň studia a předmět</h2>
+
+        <section class="skola-sekce" id="aj">
+            <h3>🇬🇧 Anglický Jazyk (Duolingo Style)</h3>
+            <div class="kurzy-grid">
+                <article class="karta-kurzu interactive-card" data-course="anglictina" data-level="aj" onclick="openCourseModal(this)">
+                    <h4>Kurzy Angličtiny</h4>
+                    <p>Základy, gramatika, slovíčka, konverzace.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="skola-sekce" id="zs">
+            <h3>🏫 Základní škola</h3>
+            <div class="kurzy-grid">
+                <article class="karta-kurzu interactive-card" data-course="matematika" data-level="zs" onclick="openCourseModal(this)">
+                    <h4>Matematika ➕</h4>
+                    <p>Aritmetika, geometrie, základy algebry.</p>
+                </article>
+                <article class="karta-kurzu interactive-card" data-course="cestina" data-level="zs" onclick="openCourseModal(this)">
+                    <h4>Český Jazyk 🇨🇿</h4>
+                    <p>Mluvnice, pravopis, sloh.</p>
+                </article>
+            </div>
+        </section>
+        
+        <section class="skola-sekce" id="ss">
+            <h3>🧑‍🎓 Střední škola</h3>
+            <div class="kurzy-grid">
+                <article class="karta-kurzu interactive-card" data-course="matematika" data-level="ss" onclick="openCourseModal(this)">
+                    <h4>Matematika pro SŠ</h4>
+                    <p>Funkce, derivace, integrály.</p>
+                </article>
+                <article class="karta-kurzu interactive-card" data-course="cestina" data-level="ss" onclick="openCourseModal(this)">
+                    <h4>Český jazyk a literatura</h4>
+                    <p>Stylistika, literární historie.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="skola-sekce" id="vs">
+            <h3>👨‍🔬 Vysoká škola</h3>
+            <div class="kurzy-grid">
+                <article class="karta-kurzu interactive-card" data-course="matematika" data-level="vs" onclick="openCourseModal(this)">
+                    <h4>Matematika (Tech./Přír.)</h4>
+                    <p>Matematická analýza, lineární algebra.</p>
+                </article>
+                <article class="karta-kurzu interactive-card" data-course="cestina" data-level="vs" onclick="openCourseModal(this)">
+                    <h4>Český jazyk (Bohemistika)</h4>
+                    <p>Lingvistika, syntax, historie jazyka.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+    
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="hideForms()">&times;</span>
+            <div id="auth-message" style="color:red; text-align:center;"></div>
+            
+            <form id="login-form" class="auth-form" style="display: none;" onsubmit="handleLogin(event)">
+                <h3>Přihlášení</h3>
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" name="email" required>
+                
+                <label for="login-password">Heslo:</label>
+                <input type="password" id="login-password" name="password" required>
+                
+                <button type="submit">Přihlásit se</button>
+                <p class="switch-form" onclick="showForm('register')">Nemáte účet? Zaregistrujte se.</p>
+            </form>
+
+            <form id="register-form" class="auth-form" style="display: none;" onsubmit="handleRegister(event)">
+                <h3>Registrace</h3>
+                <label for="register-jmeno">Jméno (bude použito pro username):</label>
+                <input type="text" id="register-jmeno" name="jmeno" required>
+
+                <label for="register-email">Email:</label>
+                <input type="email" id="register-email" name="email" required>
+                
+                <label for="register-password">Heslo:</label>
+                <input type="password" id="register-password" name="password" required>
+                
+                <button type="submit">Zaregistrovat se</button>
+                <p class="switch-form" onclick="showForm('login')">Už máte účet? Přihlaste se.</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="course-modal" class="modal">
+        <div class="modal-content course-content">
+            <span class="close-btn" onclick="document.getElementById('course-modal').style.display='none';">&times;</span>
+            <h3 id="course-title">Vyber si ročník</h3>
+            <p id="auth-warning" style="color: var(--color-danger); text-align: center; margin-top: 15px; display: none;">Pro přístup k učivu se prosím přihlaste!</p>
+            <div id="course-details"></div>
+        </div>
+    </div>
+
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content course-content" style="max-width: 800px;">
+            <span class="close-btn" onclick="closeQuiz()">&times;</span>
+            <h3 id="quiz-title"></h3>
+            <div id="quiz-container"></div>
+            <div id="quiz-results" style="margin-top: 20px; display: none;"></div>
+            <button id="submit-quiz-btn" style="background-color: var(--color-danger); margin-top: 20px; display: block;">Odeslat kvíz</button>
+        </div>
+    </div>
+
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="document.getElementById('profile-modal').style.display='none';">&times;</span>
+            <h3>Upravit Profil</h3>
+            
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img id="profile-pic-preview" src="https://via.placeholder.com/150/0000FF/FFFFFF?text=P" alt="Profilová fotka" class="profile-pic-insta" style="cursor: pointer; width: 120px; height: 120px;" onclick="document.getElementById('profile-pic-upload').click();">
+                <p style="color: var(--text-secondary); font-size: 0.9em;">Klikni na obrázek pro změnu</p>
+                <input type="file" id="profile-pic-upload" accept="image/*" style="display: none;">
+            </div>
+
+            <label for="profile-nickname">Přezdívka (Nickname):</label>
+            <input type="text" id="profile-nickname" name="nickname" class="auth-form input" style="width: 95%; padding: 12px; margin-top: 5px; margin-bottom: 15px;">
+
+            <button onclick="saveProfile()" style="background-color: var(--color-accent); margin-top: 20px; width: 100%; padding: 12px; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em;">Uložit změny</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 E-learning Platforma. Studentský projekt.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
