@@ -70,13 +70,21 @@ header {
     margin-right: 15px;
 }
 
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 nav a, nav button {
     color: white; 
     text-decoration: none;
-    margin-left: 10px;
     padding: 8px 12px;
     border-radius: 6px; 
     transition: background-color 0.3s;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
 }
 
 nav a:hover, #logout-link:hover, #profile-nav-link:hover {
@@ -125,9 +133,6 @@ nav a:hover, #logout-link:hover, #profile-nav-link:hover {
     background-color: var(--color-accent);
     color: white;
     padding: 8px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
 }
 
 .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
@@ -210,7 +215,7 @@ h2 {
 
 .modal-content {
     background-color: var(--bg-modal);
-    margin: 5% auto;
+    margin: 2% auto; /* Menší margin pro více místa */
     padding: 30px;
     width: 90%;
     max-width: 450px;
@@ -220,7 +225,11 @@ h2 {
     position: relative;
 }
 .course-content {
-    max-width: 700px;
+    max-width: 800px;
+    /* NOVÁ PRAVIDLA PRO SCROLLOVÁNÍ */
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Omezí maximální výšku modalu */
 }
 .profile-pic-insta {
     width: 80px;
@@ -291,11 +300,26 @@ h2 {
 }
 
 /* --- KVÍZ --- */
+#quiz-container {
+    /* KLÍČOVÁ PRAVIDLA PRO SCROLLOVÁNÍ OBSAHU KVÍZU */
+    overflow-y: auto;  /* Povolí vertikální scrollbar */
+    flex-grow: 1;      /* Zajistí, že tento kontejner vyplní dostupné místo */
+    padding-right: 15px; /* Místo pro scrollbar, aby nepřekrýval text */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .quiz-question {
     background-color: var(--bg-main);
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 8px;
+}
+.quiz-question .answers {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
 }
 .explanation-box {
     margin-top: 10px;
@@ -306,6 +330,7 @@ h2 {
 .correct-answer { color: green; font-weight: bold; }
 .incorrect-answer { color: var(--color-danger); font-weight: bold; }
 
+
 /* --- FOOTER --- */
 footer {
     text-align: center;
@@ -313,4 +338,95 @@ footer {
     background-color: var(--bg-header); 
     color: white; 
     margin-top: auto; 
+}
+
+/* --- STYLY PRO TLAČÍTKO NÁPOVĚDY --- */
+#help-button {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#help-button:hover {
+    transform: scale(1.1);
+    background-color: #2980b9;
+}
+
+/* --- STYLY PRO STRÁNKU S NÁPOVĚDOU (help.html) --- */
+.back-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: bold;
+}
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.help-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-subtle);
+}
+
+.help-container h1, .help-container h2 {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+.help-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+th, td {
+    border: 1px solid var(--border-light);
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+}
+
+thead th {
+    background-color: var(--bg-main);
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--bg-main);
+}
+
+td code {
+    background-color: var(--border-light);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
 }
