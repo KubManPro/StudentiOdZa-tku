@@ -3,169 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studentská E-learning Platforma - Vzdělání pro každého</title>
-    <link rel="stylesheet" href="style.css"> 
+    <title>LangLearn - Učte se efektivně</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 </head>
 <body class="light-theme">
     
     <div id="sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <h2>⚙️ Nastavení</h2>
-            <span class="close-sidebar-btn" onclick="toggleSettings()">&times;</span>
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSettings()">&times;</a>
+        <h2>Nastavení</h2>
+        <div class="setting-item">
+            <span>Téma aplikace:</span>
+            <button onclick="toggleTheme()">Přepnout Světlé/Tmavé</button>
         </div>
-        <div class="sidebar-content"> 
-            <div class="setting-item">
-                <span>Povolit oznámení</span>
-                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
-            </div>
+        <div class="setting-item">
+            <span>Údaje:</span>
+            <button onclick="localStorage.clear(); window.location.reload();" class="danger">Smazat Všechna Data</button>
         </div>
     </div>
-    
+
     <header>
-        <div class="logo-area">
-            <button id="menu-btn" onclick="toggleSettings()">☰</button> 
-            <h1>Platforma pro studenty</h1>
+        <div class="container nav-content">
+            <h1 class="logo">LangLearn 🎓</h1>
+            <nav>
+                <a href="#" class="nav-item">Domů</a>
+                <a href="help.html" class="nav-item">Nápověda/Vysvětlení</a> 
+                <a href="#" class="nav-item" id="profile-nav-link" onclick="showProfile()" style="display:none;">Profil</a>
+                <a href="#" class="nav-item" id="auth-link" onclick="showForm('login')">Přihlásit se</a>
+                <a href="#" class="nav-item danger" id="logout-link" onclick="logout()" style="display:none;">Odhlásit se</a>
+            </nav>
+            <button id="menu-btn" class="menu-btn" onclick="toggleSettings()">⚙️</button>
         </div>
-        
-        <nav>
-            <a href="#" id="auth-link" onclick="showForm('login')">Přihlášení/Registrace</a>
-            <a href="#" id="profile-nav-link" onclick="showProfile()" style="display: none;">Můj Profil</a> 
-            <a href="#" id="logout-link" onclick="logout()" style="display: none;">Odhlásit se</a>
-        </nav>
     </header>
 
-    <main id="kurzy">
-        <a href="help.html" id="help-button">?</a>
-
-        <h2 id="main-heading">📚 Vyber si úroveň studia a předmět</h2>
-
-        <section class="skola-sekce" id="aj">
-            <h3>🇬🇧 Anglický Jazyk (Duolingo Style)</h3>
-            <div class="kurzy-grid">
-                <article class="karta-kurzu interactive-card" data-course="anglictina" data-level="aj" onclick="openCourseModal(this)">
-                    <h4>Kurzy Angličtiny</h4>
-                    <p>Základy, gramatika, slovíčka, konverzace.</p>
-                </article>
-            </div>
+    <main class="container">
+        <section class="hero">
+            <h2>Vítejte v LangLearn!</h2>
+            <p>Vyberte si oblast, ve které se chcete zlepšit, a pusťte se do kvízů.</p>
         </section>
 
-        <section class="skola-sekce" id="zs">
-            <h3>🏫 Základní škola</h3>
-            <div class="kurzy-grid">
-                <article class="karta-kurzu interactive-card" data-course="matematika" data-level="zs" onclick="openCourseModal(this)">
-                    <h4>Matematika ➕</h4>
-                    <p>Aritmetika, geometrie, základy algebry.</p>
-                </article>
-                <article class="karta-kurzu interactive-card" data-course="cestina" data-level="zs" onclick="openCourseModal(this)">
-                    <h4>Český Jazyk 🇨🇿</h4>
-                    <p>Mluvnice, pravopis, sloh.</p>
-                </article>
+        <section class="course-selection">
+            
+            <div class="course-group language-group">
+                <h3>Jazyky a Ostatní</h3>
+                <div class="course-grid">
+                    <div class="course-card" data-level="aj" data-course="anglictina" onclick="openCourseModal(this)">
+                        <span class="course-icon">🇬🇧</span>
+                        <h4>Anglický Jazyk</h4>
+                        <p>Začátečníci i pokročilí. Ověřte si gramatiku a slovní zásobu.</p>
+                    </div>
+                </div>
             </div>
-        </section>
-        
-        <section class="skola-sekce" id="ss">
-            <h3>🧑‍🎓 Střední škola</h3>
-            <div class="kurzy-grid">
-                <article class="karta-kurzu interactive-card" data-course="matematika" data-level="ss" onclick="openCourseModal(this)">
-                    <h4>Matematika pro SŠ</h4>
-                    <p>Funkce, derivace, integrály.</p>
-                </article>
-                <article class="karta-kurzu interactive-card" data-course="cestina" data-level="ss" onclick="openCourseModal(this)">
-                    <h4>Český jazyk a literatura</h4>
-                    <p>Stylistika, literární historie.</p>
-                </article>
-            </div>
-        </section>
+            
+            <div class="course-group school-group">
+                <h3>📚 Základní Škola (ZŠ)</h3>
+                <div class="course-grid">
+                    <div class="course-card" data-level="zs" data-course="matematika" onclick="openCourseModal(this)">
+                        <span class="course-icon">📐</span>
+                        <h4>Matematika ZŠ</h4>
+                        <p>Násobilka, zlomky, procenta. Kompletní přehled základní školy.</p>
+                    </div>
 
-        <section class="skola-sekce" id="vs">
-            <h3>👨‍🔬 Vysoká škola</h3>
-            <div class="kurzy-grid">
-                <article class="karta-kurzu interactive-card" data-course="matematika" data-level="vs" onclick="openCourseModal(this)">
-                    <h4>Matematika (Tech./Přír.)</h4>
-                    <p>Matematická analýza, lineární algebra.</p>
-                </article>
-                <article class="karta-kurzu interactive-card" data-course="cestina" data-level="vs" onclick="openCourseModal(this)">
-                    <h4>Český jazyk (Bohemistika)</h4>
-                    <p>Lingvistika, syntax, historie jazyka.</p>
-                </article>
+                    <div class="course-card" data-level="zs" data-course="cestina" onclick="openCourseModal(this)">
+                        <span class="course-icon">📝</span>
+                        <h4>Český Jazyk ZŠ</h4>
+                        <p>Vyjmenovaná slova, slovní druhy, pravopis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-group school-group">
+                <h3>🎓 Střední Škola (SŠ)</h3>
+                <div class="course-grid">
+                    <div class="course-card" data-level="ss" data-course="matematika" onclick="openCourseModal(this)">
+                        <span class="course-icon">📈</span>
+                        <h4>Matematika SŠ</h4>
+                        <p>Funkce, algebra, geometrie. Připravte se na maturitu.</p>
+                    </div>
+
+                    <div class="course-card" data-level="ss" data-course="cestina" onclick="openCourseModal(this)">
+                        <span class="course-icon">🗣️</span>
+                        <h4>Český Jazyk SŠ</h4>
+                        <p>Literární styly, historie, stylistika.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="course-group university-group">
+                <h3>🧠 Vysoká Škola (VŠ)</h3>
+                <div class="course-grid">
+                    <div class="course-card" data-level="vs" data-course="matematika" onclick="openCourseModal(this)">
+                        <span class="course-icon">🧠</span>
+                        <h4>Matematika VŠ</h4>
+                        <p>Analýza, lineární algebra. Pro zájemce o technické obory.</p>
+                    </div>
+
+                    <div class="course-card" data-level="vs" data-course="cestina" onclick="openCourseModal(this)">
+                        <span class="course-icon">📖</span>
+                        <h4>Český Jazyk VŠ</h4>
+                        <p>Lingvistika a pokročilá gramatika.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 LangLearn. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
     
     <div id="auth-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="hideForms()">&times;</span>
-            <div id="auth-message" style="color:red; text-align:center;"></div>
+        <div class="modal-content auth-content">
+            <span class="close" onclick="hideForms()">&times;</span>
+            <div id="auth-message" class="message-box"></div>
             
-            <form id="login-form" class="auth-form" style="display: none;" onsubmit="handleLogin(event)">
-                <h3>Přihlášení</h3>
-                <label for="login-email">Email:</label>
-                <input type="email" id="login-email" name="email" required>
-                
-                <label for="login-password">Heslo:</label>
-                <input type="password" id="login-password" name="password" required>
-                
-                <button type="submit">Přihlásit se</button>
-                <p class="switch-form" onclick="showForm('register')">Nemáte účet? Zaregistrujte se.</p>
+            <form id="login-form" onsubmit="handleLogin(event)" style="display: block;">
+                <h2>Přihlášení</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Heslo" required>
+                <button type="submit" class="btn-primary">Přihlásit se</button>
+                <p class="switch-link">
+                    Nemáte účet? <a href="#" onclick="showForm('register')">Registrujte se!</a><br>
+                    <a href="#" onclick="showForgotPasswordForm()">Zapomněli jste heslo?</a>
+                </p>
             </form>
-
-            <form id="register-form" class="auth-form" style="display: none;" onsubmit="handleRegister(event)">
-                <h3>Registrace</h3>
-                <label for="register-jmeno">Jméno (bude použito pro username):</label>
-                <input type="text" id="register-jmeno" name="jmeno" required>
-
-                <label for="register-email">Email:</label>
-                <input type="email" id="register-email" name="email" required>
-                
-                <label for="register-password">Heslo:</label>
-                <input type="password" id="register-password" name="password" required>
-                
-                <button type="submit">Zaregistrovat se</button>
-                <p class="switch-form" onclick="showForm('login')">Už máte účet? Přihlaste se.</p>
+            
+            <form id="register-form" onsubmit="handleRegister(event)" style="display: none;">
+                <h2>Registrace</h2>
+                <input type="text" id="register-jmeno" placeholder="Jméno a příjmení / Přezdívka" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Heslo" required>
+                <button type="submit" class="btn-primary">Registrovat se</button>
+                <p class="switch-link">
+                    Již máte účet? <a href="#" onclick="showForm('login')">Přihlaste se!</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    
+    <div id="forgot-password-modal" class="modal">
+        <div class="modal-content auth-content">
+            <span class="close" onclick="document.getElementById('forgot-password-modal').style.display='none'">&times;</span>
+            <h2>Obnova hesla</h2>
+            <div id="forgot-message" class="message-box"></div>
+            <form onsubmit="handleForgotPassword(event)">
+                <p>Zadejte svůj email pro odeslání instrukcí:</p>
+                <input type="email" id="forgot-email" placeholder="Váš email" required>
+                <button type="submit" class="btn-primary">Odeslat instrukce</button>
+                <p class="switch-link"><a href="#" onclick="document.getElementById('forgot-password-modal').style.display='none'; showForm('login');">Zpět k přihlášení</a></p>
             </form>
         </div>
     </div>
 
+
     <div id="course-modal" class="modal">
-        <div class="modal-content course-content">
-            <span class="close-btn" onclick="document.getElementById('course-modal').style.display='none';">&times;</span>
-            <h3 id="course-title">Vyber si ročník</h3>
-            <p id="auth-warning" style="color: var(--color-danger); text-align: center; margin-top: 15px; display: none;">Pro přístup k učivu se prosím přihlaste!</p>
-            <div id="course-details"></div>
+        <div class="modal-content large-content">
+            <span class="close" onclick="document.getElementById('course-modal').style.display='none'">&times;</span>
+            <h2 id="course-title">Vyberte úroveň</h2>
+            
+            <div id="auth-warning" style="display:none; padding: 15px; background-color: var(--color-danger-light); border-radius: 8px; margin-bottom: 20px;">
+                ⚠️ Pro přístup ke kurzům se musíte nejprve přihlásit.
+            </div>
+            
+            <div id="english-progress-bar-container" style="display:none; margin-bottom: 20px;">
+                <h4>Váš Pokrok v Angličtině:</h4>
+                <progress id="english-progress-bar" value="0" max="100"></progress>
+                <p id="english-progress-text" style="font-size: 0.9em; color: var(--text-secondary);"></p>
+            </div>
+
+            <div id="course-details">
+                </div>
         </div>
     </div>
 
     <div id="quiz-modal" class="modal">
-        <div class="modal-content course-content" style="max-width: 800px;">
-            <span class="close-btn" onclick="closeQuiz()">&times;</span>
-            <h3 id="quiz-title"></h3>
-            <div id="quiz-container"></div>
-            <div id="quiz-results" style="margin-top: 20px; display: none;"></div>
-            <button id="submit-quiz-btn" style="background-color: var(--color-danger); margin-top: 20px; display: block;">Odeslat kvíz</button>
-        </div>
-    </div>
-
-    <div id="profile-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="document.getElementById('profile-modal').style.display='none';">&times;</span>
-            <h3>Upravit Profil</h3>
+        <div class="modal-content large-content">
+            <span class="close" onclick="closeQuiz()">&times;</span>
+            <h2 id="quiz-title"></h2>
             
-            <div style="text-align: center; margin-bottom: 20px;">
-                <img id="profile-pic-preview" src="https://via.placeholder.com/150/0000FF/FFFFFF?text=P" alt="Profilová fotka" class="profile-pic-insta" style="cursor: pointer; width: 120px; height: 120px;" onclick="document.getElementById('profile-pic-upload').click();">
-                <p style="color: var(--text-secondary); font-size: 0.9em;">Klikni na obrázek pro změnu</p>
-                <input type="file" id="profile-pic-upload" accept="image/*" style="display: none;">
-            </div>
+            <div id="quiz-container" class="quiz-container">
+                </div>
 
-            <label for="profile-nickname">Přezdívka (Nickname):</label>
-            <input type="text" id="profile-nickname" name="nickname" class="auth-form input" style="width: 95%; padding: 12px; margin-top: 5px; margin-bottom: 15px;">
+            <div id="quiz-results" class="results-box" style="display: none; margin-top: 20px;">
+                </div>
 
-            <button onclick="saveProfile()" style="background-color: var(--color-accent); margin-top: 20px; width: 100%; padding: 12px; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1em;">Uložit změny</button>
+            <button id="submit-quiz-btn" class="btn-primary" style="margin-top: 20px;"></button>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2025 E-learning Platforma. Studentský projekt.</p>
-    </footer>
+    
+    <div id="profile-modal" class="modal">
+        <div class="modal-content profile-content">
+            <span class="close" onclick="document.getElementById('profile-modal').style.display='none'">&times;</span>
+            <h2>Můj Profil</h2>
+            
+            <div class="profile-section">
+                <h3>Údaje a nastavení</h3>
+                <div class="profile-pic-container">
+                    <img id="profile-pic-preview" src="https://via.placeholder.com/150/0000FF/FFFFFF?text=P" alt="Profilový obrázek" class="profile-pic">
+                    <input type="file" id="profile-pic-upload" accept="image/*" style="display: none;">
+                    <button class="btn-secondary" onclick="document.getElementById('profile-pic-upload').click()">Změnit foto</button>
+                </div>
+                
+                <label for="profile-nickname">Přezdívka:</label>
+                <input type="text" id="profile-nickname" value="" maxlength="30">
+                
+                <button class="btn-primary" onclick="saveProfile()">Uložit profil</button>
+            </div>
+            
+            <hr>
+            
+            <div class="profile-section friends-section">
+                <h3>Přátelé (Simulace)</h3>
+                <div id="friends-list" class="friends-list">
+                    </div>
+                <button class="btn-primary" onclick="showAddFriend()">+ Přidat přítele</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="add-friend-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('add-friend-modal').style.display='none'">&times;</span>
+            <h2>Najít a přidat přítele</h2>
+            <input type="text" id="friend-search" onkeyup="searchUsers()" placeholder="Zadejte uživatelské jméno nebo jméno">
+            <div id="search-results" class="search-results-list">
+                </div>
+        </div>
+    </div>
+    
+    <div id="chat-modal" class="modal">
+        <div class="modal-content chat-content">
+            <span class="close" onclick="document.getElementById('chat-modal').style.display='none'">&times;</span>
+            <h3 id="chat-with-name">Chat</h3>
+            <div id="chat-messages" class="chat-messages">
+                </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Napište zprávu..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                <button class="btn-primary" onclick="sendChatMessage()">Odeslat</button>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
