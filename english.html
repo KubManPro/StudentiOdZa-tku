@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angličtina - Lekce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+    <header>
+        <div class="container nav-content">
+            <h1 class="logo">LangLearn — Angličtina</h1>
+            <nav>
+                <a href="index.html" class="nav-item">Domů</a>
+                <a href="help.html" class="nav-item">Nápověda</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Vyber lekci</h2>
+        <div id="english-lessons" class="lesson-grid">
+            <!-- Buttons budou generovány JS -->
+        </div>
+    </main>
+
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content large-content">
+            <span class="close" onclick="closeQuiz()">&times;</span>
+            <h2 id="quiz-title"></h2>
+            <div id="quiz-container" class="quiz-container"></div>
+            <div id="quiz-results" class="results-box" style="display:none;margin-top:20px;"></div>
+            <button id="submit-quiz-btn" class="btn-primary" style="margin-top:20px;">Odeslat kvíz</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function getUsers() { return JSON.parse(localStorage.getItem('users')) || []; }
+        function getLogged() { return JSON.parse(localStorage.getItem('loggedInUser')); }
+
+        function startLessonFromPage(lessonId) {
+            // save selected lesson and go back to index where quiz will start
+            localStorage.setItem('english_selected_lesson', lessonId);
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('english-lessons');
+            const logged = getLogged();
+            const completed = logged?.progress?.english || [];
+
+            for (let i = 1; i <= 50; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'lesson-bubble';
+                const lessonKey = `aj_lesson_${i}`;
+                const prevKey = `aj_lesson_${i-1}`;
+                const isCompleted = completed.includes(lessonKey);
+                const isUnlocked = i === 1 || completed.includes(prevKey);
+
+                btn.innerHTML = `<span class="lesson-num">${i}</span><span class="lesson-title">Lekce ${i}</span>`;
+                if (!isUnlocked) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.6';
+                }
+                if (isCompleted) {
+                    btn.style.border = '2px solid #2e7d32';
+                }
+
+                btn.onclick = () => {
+                    if (!isUnlocked) { alert('Tuto lekci nejprve odemkněte dokončením předchozí.'); return; }
+                    startLessonFromPage(lessonKey);
+                };
+                container.appendChild(btn);
+            }
+        });
+    </script>
+</body>
+</html>
