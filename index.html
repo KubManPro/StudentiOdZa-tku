@@ -146,14 +146,14 @@
     
     <div id="forgot-password-modal" class="modal">
         <div class="modal-content auth-content">
-            <span class="close" onclick="document.getElementById('forgot-password-modal').style.display='none'">&times;</span>
+            <span class="close" onclick="hideModal('forgot-password-modal')">&times;</span>
             <h2>Obnova hesla</h2>
             <div id="forgot-message" class="message-box"></div>
             <form onsubmit="handleForgotPassword(event)">
                 <p>Zadejte svůj email pro odeslání instrukcí:</p>
                 <input type="email" id="forgot-email" placeholder="Váš email" required>
                 <button type="submit" class="btn-primary">Odeslat instrukce</button>
-                <p class="switch-link"><a href="#" onclick="document.getElementById('forgot-password-modal').style.display='none'; showForm('login');">Zpět k přihlášení</a></p>
+                <p class="switch-link"><a href="#" onclick="hideModal('forgot-password-modal'); showForm('login');">Zpět k přihlášení</a></p>
             </form>
         </div>
     </div>
@@ -161,7 +161,7 @@
 
     <div id="course-modal" class="modal">
         <div class="modal-content large-content">
-            <span class="close" onclick="document.getElementById('course-modal').style.display='none'">&times;</span>
+            <span class="close" onclick="hideModal('course-modal')">&times;</span>
             <h2 id="course-title">Vyberte úroveň</h2>
             
             <div id="auth-warning" style="display:none; padding: 15px; background-color: var(--color-danger-light); border-radius: 8px; margin-bottom: 20px;">
@@ -196,9 +196,12 @@
     
     <div id="profile-modal" class="modal">
         <div class="modal-content profile-content">
-            <span class="close" onclick="document.getElementById('profile-modal').style.display='none'">&times;</span>
+            <span class="close" onclick="hideModal('profile-modal')">&times;</span>
             <h2>Můj Profil</h2>
-            
+            <div id="profile-level-box" style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <!-- Level box populated by JS -->
+            </div>
+
             <div class="profile-section">
                 <h3>Údaje a nastavení</h3>
                 <div class="profile-pic-container">
@@ -210,23 +213,57 @@
                 <label for="profile-nickname">Přezdívka:</label>
                 <input type="text" id="profile-nickname" value="" maxlength="30">
                 
-                <button class="btn-primary" onclick="saveProfile()">Uložit profil</button>
+                <button class="btn-primary" onclick="showProfileConfirm()">Uložit profil</button>
             </div>
             
             <hr>
             
             <div class="profile-section friends-section">
-                <h3>Přátelé (Simulace)</h3>
+                <h3>Přátelé</h3>
                 <div id="friends-list" class="friends-list">
                     </div>
                 <button class="btn-primary" onclick="showAddFriend()">+ Přidat přítele</button>
             </div>
         </div>
+
+            <!-- Confirmation modal for saving profile -->
+            <div id="profile-confirm-modal" class="modal">
+                <div class="modal-content" style="max-width:360px; text-align:center;">
+                    <h3>Uložit změny profilu?</h3>
+                    <p>Opravdu chcete uložit změny v profilu? Tuto akci můžete zrušit a vrátit se k úpravám.</p>
+                    <div style="display:flex;gap:10px;justify-content:center;margin-top:12px;">
+                        <button class="btn-secondary" onclick="hideProfileConfirm()">Zrušit</button>
+                        <button class="btn-primary" onclick="confirmSaveProfile()">Uložit</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Rank / Level details modal -->
+            <div id="rank-details-modal" class="modal">
+                <div class="modal-content" style="max-width:420px; text-align:left;">
+                    <span class="close" onclick="hideModal('rank-details-modal')">&times;</span>
+                    <h3>Level / Rank</h3>
+                    <div id="rank-details-body">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
     </div>
     
+    <!-- Quiz exit confirmation modal -->
+    <div id="quiz-exit-confirm-modal" class="modal">
+        <div class="modal-content" style="max-width:320px;text-align:center;">
+            <h3>Vážně si přejete odejít?</h3>
+            <p style="color: var(--text-secondary);">Neodeslané odpovědi budou ztraceny. Opravdu chcete kvíz ukončit?</p>
+            <div style="display:flex;gap:10px;justify-content:center;margin-top:12px;">
+                <button class="btn-secondary" onclick="hideQuizExitConfirm()">NE</button>
+                <button class="btn-primary" onclick="confirmQuitQuiz()">JO</button>
+            </div>
+        </div>
+    </div>
+
     <div id="add-friend-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="document.getElementById('add-friend-modal').style.display='none'">&times;</span>
+            <span class="close" onclick="hideModal('add-friend-modal')">&times;</span>
             <h2>Najít a přidat přítele</h2>
             <input type="text" id="friend-search" onkeyup="searchUsers()" placeholder="Zadejte uživatelské jméno nebo jméno">
             <div id="search-results" class="search-results-list">
@@ -236,7 +273,7 @@
     
     <div id="chat-modal" class="modal">
         <div class="modal-content chat-content">
-            <span class="close" onclick="document.getElementById('chat-modal').style.display='none'">&times;</span>
+            <span class="close" onclick="hideModal('chat-modal')">&times;</span>
             <h3 id="chat-with-name">Chat</h3>
             <div id="chat-messages" class="chat-messages">
                 </div>
