@@ -1,177 +1,196 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nápověda - Vysvětlení Učiva</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nápověda - Vysvětlení Učiva</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="light-theme">
 
-    <header>
-        <div class="logo-area">
-            <h1>Platforma pro studenty</h1>
-        </div>
-        <nav>
-            <button onclick="toggleTheme()" class="theme-toggle-btn">☀️ Light / 🌙 Dark</button>
-            <a href="index.html" class="back-button">← Zpět na hlavní stránku</a>
-        </nav>
-    </header>
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>⚙️ Nastavení</h2>
+            <span class="close-sidebar-btn" onclick="toggleSettings()">&times;</span>
+        </div>
+        <div class="sidebar-content"> 
+            <div class="setting-item">
+                <span>Téma</span>
+                <button onclick="toggleTheme()" class="theme-toggle-btn">☀️ Light / 🌙 Dark</button>
+            </div>
+        </div>
+    </div>
 
-    <main class="help-container">
+    <header>
+        <div class="container nav-content">
+            <div class="logo-area">
+                <button id="menu-btn" class="menu-btn" onclick="toggleSettings()">⚙️</button>
+                <h1 class="logo">LangLearn Nápověda 💡</h1>
+            </div>
+            <nav>
+                <a href="index.html" class="nav-item">← Zpět na Domů</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container help-container">
         <h1>PŘEHLED KLÍČOVÝCH TÉMAT A PODROBNÝCH POSTUPŮ</h1>
 
-        <h2>I. ZÁKLADNÍ ŠKOLA (ZŠ) 📚</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Třída</th>
-                        <th>Matematika (Příklad)</th>
-                        <th>Vysvětlení Postupu (Polopaticky)</th>
-                        <th>Český Jazyk (Příklad)</th>
-                        <th>Vysvětlení Postupu (Polopaticky)</th>
-                    </tr>
-                </thead>
+        <div class="help-box">
+            <h2>I. ZÁKLADNÍ ŠKOLA (ZŠ) 📚</h2>
+                <div class="table-wrapper">
+                 <table>
+                 <thead>
+                     <tr>
+                         <th>Třída</th>
+                         <th>Matematika (Příklad)</th>
+                         <th>Vysvětlení Postupu (Polopaticky)</th>
+                         <th>Český Jazyk (Příklad)</th>
+                         <th>Vysvětlení Postupu (Polopaticky)</th>
+                     </tr>
+                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>1. Třída</strong></td>
-                        <td>Sčítání do 10: <code>3 + 5</code></td>
-                        <td>1. Začínáme u prvního čísla (3). Představ si, že máš 3 bonbóny. <br>2. Přidáváme: Potřebuješ k nim přidat další číslo (5 bonbónů). <br>3. Počítáme: Spočítej vše dohromady (můžeš použít prsty). <strong>POZOR:</strong> Vždy začínej počítat až za prvním číslem. <br>→ <strong>Výsledek je 8.</strong></td>
-                        <td>Základy Čtení: <code>MÁMA</code></td>
-                        <td>1. Díváme se: Na písmena, která už známe (M, Á). <br>2. Spojování: Spojujeme hlásky (zvuky) do slabik (M a Á dá dohromady MÁ). <br>3. Celé slovo: Přečteme první slabiku a hned k ní přidáme druhou. <strong>POZOR:</strong> Nedávej mezi slabiky pauzu. <br>→ <strong>MÁMA.</strong></td>
+                        <td><div class="example-box">Sčítání do 10: <code>3 + 5</code></div></td>
+                        <td><div class="explain-box">1. Začínáme u prvního čísla (3). Představ si, že máš 3 bonbóny. <br>2. Přidáváme: Potřebuješ k nim přidat další číslo (5 bonbónů). <br>3. Počítáme: Spočítej vše dohromady (můžeš použít prsty). <strong>POZOR:</strong> Vždy začínej počítat až za prvním číslem. <br>→ <strong>Výsledek je 8.</strong></div></td>
+                        <td><div class="example-box">Základy Čtení: <code>MÁMA</code></div></td>
+                        <td><div class="explain-box">1. Díváme se: Na písmena, která už známe (M, Á). <br>2. Spojování: Spojujeme hlásky (zvuky) do slabik (M a Á dá dohromady MÁ). <br>3. Celé slovo: Přečteme první slabiku a hned k ní přidáme druhou. <strong>POZOR:</strong> Nedávej mezi slabiky pauzu. <br>→ <strong>MÁMA.</strong></div></td>
                     </tr>
                     <tr>
                         <td><strong>2.–3. Třída</strong></td>
-                        <td>Písemné Odčítání: <code>324 - 156</code></td>
-                        <td>1. Začínáme ZPRAVA: Chceme odečíst 4-6. To nejde. <br>2. Půjčujeme: Musíme si půjčit 1 desítku (přidáme 10 k 4). → 14-6 = 8. Zapíšeme 8. <br>3. Vracíme: Půjčenou desítku VRAŤ k číslu pod ním (k 5, je z něj 6). <br>4. Pokračujeme doleva a opakujeme. <strong>POZOR:</strong> Nejčastější chyba je ZAPOMENOUT VRÁTIT půjčenou desítku/stovku! 🚨 <br>→ <strong>Výsledek 168.</strong></td>
-                        <td>Vyjmenovaná slova: <code>b_t, nab_vat</code></td>
-                        <td>1. Podezřelé písmeno: Vidíme obojetnou souhlásku (B). <br>2. Kontrola seznamu: Vybav si seznam vyjmenovaných slov (BÝT, BYDLIT...). <br>3. Rozhodnutí: Pokud je slovo v seznamu (BÝT) nebo je od něj odvozené (NABÝVAT), piš Y. Pokud NE, piš I. <strong>POZOR:</strong> Jde o to, co slovo znamená, ne jak zní!</td>
+                        <td><div class="example-box">Písemné Odčítání: <code>324 - 156</code></div></td>
+                        <td><div class="explain-box">1. Začínáme ZPRAVA: Chceme odečíst 4-6. To nejde. <br>2. Půjčujeme: Musíme si půjčit 1 desítku (přidáme 10 k 4). → 14-6 = 8. Zapíšeme 8. <br>3. Vracíme: Půjčenou desítku VRAŤ k číslu pod ním (k 5, je z něj 6). <br>4. Pokračujeme doleva a opakujeme. <strong>POZOR:</strong> Nejčastější chyba je ZAPOMENOUT VRÁTIT půjčenou desítku/stovku! 🚨 <br>→ <strong>Výsled 168.</strong></div></td>
+                        <td><div class="example-box">Vyjmenovaná slova: <code>b_t, nab_vat</code></div></td>
+                        <td><div class="explain-box">1. Podezřelé písmeno: Vidíme obojetnou souhlásku (B). <br>2. Kontrola seznamu: Vybav si seznam vyjmenovaných slov (BÝT, BYDLIT...). <br>3. Rozhodnutí: Pokud je slovo v seznamu (BÝT) nebo je od něj odvozené (NABÝVAT), piš Y. Pokud NE, piš I. <strong>POZOR:</strong> Jde o to, co slovo znamená, ne jak zní!</div></td>
                     </tr>
                     <tr>
                         <td><strong>4.–5. Třída</strong></td>
-                        <td>Obsah Obdélníku: <code>5 cm · 3 cm</code></td>
-                        <td>1. Vzorec: Použij S = a · b. (Délka krát Šířka). <br>2. Dosazení: S = 5 · 3. MUSÍŠ násobit. <br>3. Jednotky: Když násobíš cm · cm, dostaneš čtvereční jednotky (cm²). <strong>POZOR:</strong> Nezaměňuj to s Obvodem. <br>→ <strong>Výsledek je 15 cm².</strong></td>
-                        <td>Mluvnické Kategorie: <code>stromy</code></td>
-                        <td>1. Pád/Číslo/Rod: Zeptej se (Kdo/co? = 1. pád), (je jich víc = množné č.), (ten strom = mužský neživotný). <br>2. Vzor: Porovnej KONCOVKU slova s koncovkami vzorů. *Stromy se podobá hrady*. <br>3. Rozhodnutí: Vzor HRAD. <strong>POZOR:</strong> U mužského rodu je důležité rozlišit životný (Kdo?) a neživotný (Co?).</td>
+                        <td><div class="example-box">Obsah Obdélníku: <code>5 cm · 3 cm</code></div></td>
+                        <td><div class="explain-box">1. Vzorec: Použij S = a · b. (Délka krát Šířka). <br>2. Dosazení: S = 5 · 3. MUSÍŠ násobit. <br>3. Jednotky: Když násobíš cm · cm, dostaneš čtvereční jednotky (cm²). <strong>POZOR:</strong> Nezaměňuj to s Obvodem. <br>→ <strong>Výsledek je 15 cm².</strong></div></td>
+                        <td><div class="example-box">Mluvnické Kategorie: <code>stromy</code></div></td>
+                        <td><div class="explain-box">1. Pád/Číslo/Rod: Zeptej se (Kdo/co? = 1. pád), (je jich víc = množné č.), (ten strom = mužský neživotný). <br>2. Vzor: Porovnej KONCOVKU slova s koncovkami vzorů. *Stromy se podobá hrady*. <br>3. Rozhodnutí: Vzor HRAD. <strong>POZOR:</strong> U mužského rodu je důležité rozlišit životný (Kdo?) a neživotný (Co?).</div></td>
                     </tr>
                     <tr>
                         <td><strong>6.–7. Třída</strong></td>
-                        <td>Výpočet Procent: <code>15 % ze 400</code></td>
-                        <td>1. Základ: Urči 100 % (zde 400). <br>2. 1 % (DĚLENÍ): Základ VYDĚL 100. → 400 ÷ 100 = 4. <br>3. Hledaná část (NÁSOBENÍ): Výsledek VYNÁSOB hledaným počtem procent (15). → 4 · 15 = 60. <strong>POZOR:</strong> Nezaměnit násobení a dělení. <br>→ <strong>Výsledek 60.</strong></td>
-                        <td>Větné Členy: <code>Jdu do školy.</code></td>
-                        <td>1. Základ: Najdi Přísudek (jdu). <br>2. Ptáme se: Ptej se na část věty (do školy) co nejpřesnější otázkou: Jdu KAM?. <br>3. Pojmenování: Otázka KAM je Příslovečné určení místa. <strong>POZOR:</strong> Je nutné umět všechny otázky.</td>
+                        <td><div class="example-box">Výpočet Procent: <code>15 % ze 400</code></div></td>
+                        <td><div class="explain-box">1. Základ: Urči 100 % (zde 400). <br>2. 1 % (DĚLENÍ): Základ VYDĚL 100. → 400 ÷ 100 = 4. <br>3. Hledaná část (NÁSOBENÍ): Výsledek VYNÁSOB hledaným počtem procent (15). → 4 · 15 = 60. <strong>POZOR:</strong> Nezaměnit násobení a dělení. <br>→ <strong>Výsledek 60.</strong></div></td>
+                        <td><div class="example-box">Větné Členy: <code>Jdu do školy.</code></div></td>
+                        <td><div class="explain-box">1. Základ: Najdi Přísudek (jdu). <br>2. Ptáme se: Ptej se na část věty (do školy) co nejpřesnější otázkou: Jdu KAM?. <br>3. Pojmenování: Otázka KAM je Příslovečné určení místa. <strong>POZOR:</strong> Je nutné umět všechny otázky.</div></td>
                     </tr>
                     <tr>
                         <td><strong>8.–9. Třída</strong></td>
-                        <td>Lineární Rovnice: <code>3(x-2) = 9</code></td>
-                        <td>1. Závorka: Nejprve VYNÁSOB, abys zrušil závorky: 3x - 6 = 9. <br>2. Přesun čísel: Převeď čísla na jednu stranu a x na druhou. Při přesunu ZMĚŇ ZNAMENKO! → 3x = 9 + 6. <br>3. Sečtení a vydělení: 3x = 15. → x = 5. <strong>POZOR:</strong> Zapomenutá změna znaménka je fatální.</td>
-                        <td>Shoda Přísudku: <code>Rybáři a ženy se vrátil_</code></td>
-                        <td>1. Najdi Podmět: Kdo dělal děj? Rybáři a ženy. <br>2. Rozhodni o I/Y: Stačí, aby byl v podmětu JEDEN člen mužského životného rodu (Rybáři). <br>3. Pravidlo: Pokud je tam mužský životný, piš MĚKKÉ I (vrátili). Jinak piš tvrdé Y.</td>
+                        <td><div class="example-box">Lineární Rovnice: <code>3(x-2) = 9</code></div></td>
+                        <td><div class="explain-box">1. Závorka: Nejprve VYNÁSOB, abys zrušil závorky: 3x - 6 = 9. <br>2. Přesun čísel: Převeď čísla na jednu stranu a x na druhou. Při přesunu ZMĚŇ ZNAMENKO! → 3x = 9 + 6. <br>3. Sečtení a vydělení: 3x = 15. → x = 5. <strong>POZOR:</strong> Zapomenutá změna znaménka je fatální.</div></td>
+                        <td><div class="example-box">Shoda Přísudku: <code>Rybáři a ženy se vrátil_</code></div></td>
+                        <td><div class="explain-box">1. Najdi Podmět: Kdo dělal děj? Rybáři a ženy. <br>2. Rozhodni o I/Y: Stačí, aby byl v podmětu JEDEN člen mužského životného rodu (Rybáři). <br>3. Pravidlo: Pokud je tam mužský životný, piš MĚKKÉ I (vrátili). Jinak piš tvrdé Y.</div></td>
                     </tr>
                 </tbody>
-            </table>
-        </div>
-        
-        <h2>II. STŘEDNÍ ŠKOLA (SŠ) 🎓</h2>
-        <div class="table-wrapper">
-             <table>
-                <thead>
-                    <tr>
-                        <th>Téma</th>
-                        <th>Matematika (Příklad)</th>
-                        <th>Vysvětlení Postupu (Polopaticky)</th>
-                        <th>Český Jazyk (Příklad)</th>
-                        <th>Vysvětlení Postupu (Polopaticky)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Algebra</strong></td>
-                        <td>Logaritmická Rovnice: <code>log₂(x-1) = 3</code></td>
-                        <td>1. PODMÍNKY: Argument (v závorce) musí být VŽDY kladný. Urči x > 1. <br>2. Převod: Přesuň základ logaritmu (2) na druhou stranu a UMOCNI ho (na 3). → x-1 = 2³. <br>3. Řešení a ověření: Vyřeš x-1 = 8 → x = 9. Zkontroluj, zda 9 splňuje x > 1.</td>
-                        <td>Tvorba Teze v Úvaze</td>
-                        <td>1. Teze (Jedna věta): Urči svůj hlavní názor. → CO CHCI DOKÁZAT? <br>2. Argumentace: Každý odstavec = jeden argument s důkazem. <br>3. Závěr: Znovu přeformuluj svoji tezi. <strong>POZOR:</strong> Neměň názor v průběhu psaní.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Kombinatorika</strong></td>
-                        <td>Výběr 3 lidí ze 7</td>
-                        <td>1. Klíčová Otázka: Záleží na pořadí? (Je výbor A,B,C jiný než B,C,A?). <br>2. Rozhodnutí: Pokud NE → Kombinace C. Pokud ANO → Variace V. <br>3. Výpočet: Kombinace znamená, že MUSÍŠ DĚLIT (vyloučit nechtěná pořadí).</td>
-                        <td>Literární Analýza (Kompozice)</td>
-                        <td>1. Rozbor Času: Plyne děj normálně (chronologicky)? Nebo se vrací do minulosti (retrospektiva)? <br>2. Struktura: Najdi začátek a konec. Zjisti, jestli děj stoupá (gradace). <strong>POZOR:</strong> V moderní literatuře se struktura často rozpadá.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <h2>III. VYSOKÁ ŠKOLA (VŠ) 🧠</h2>
-        <div class="table-wrapper">
-            <table>
-                 <thead>
-                    <tr>
-                        <th>Obor</th>
-                        <th>Matematika (Příklad)</th>
-                        <th>Vysvětlení Postupu (Polopaticky)</th>
-                        <th>Český Jazyk (Příklad)</th>
-                        <th>Vysvětlení Postupu (Polopaticky)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Analýza</strong></td>
-                        <td>Derivace Složené Fce: <code>sin(x²)</code></td>
-                        <td>1. Vnější/Vnitřní: Urči vnější funkci (sin) a vnitřní (x²). <br>2. Krok 1: Derivuj VĚTŠÍ funkci (sin), ale VLOŽ do ní tu menší (→ cos(x²)). <br>3. Krok 2: Výsledek VYNÁSOB derivací té VNITŘNÍ funkce (x² → 2x). <br>4. Výsledek: <strong>2x · cos(x²)</strong>.</td>
-                        <td>Syntaktická Valenční Analýza: <code>darovat</code></td>
-                        <td>1. Centrum: Sloveso darovat je centrum věty. <br>2. Valenční Místa: Ptej se, kdo a co MUSÍ v té větě být. MUSÍ tam být dárce (Kdo?), darovaný (Komu?) a dar (Co?). <br>3. Pády: Urči pády (1., 3. a 4. pád). <br>4. Závěr: Sloveso je trojvalenční.</td>
-                    </tr>
-                </tbody>
-            </table>
+             </table>
+            </div>
         </div>
 
-        <h2>IV. ANGLICKÝ JAZYK 🌐</h2>
-        <div class="table-wrapper">
-            <table>
-                 <thead>
-                    <tr>
-                        <th>Úroveň</th>
-                        <th>Téma a Příklad</th>
-                        <th>Vysvětlení Postupu (Polopaticky)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>A1 (Základy)</strong></td>
-                        <td>Zápor v Present Simple: <code>She works here.</code></td>
-                        <td>1. Identifikace: Máme 3. osobu (She). <br>2. Pomocné Sloveso: Použij DOESN'T. <br>3. Základní Tvar: Odeber ze slovesa to S (z works udělej work). <br>4. Sestavení: → She doesn't work here. <strong>POZOR:</strong> Dvě 's' v jedné větě jsou chyba!</td>
-                    </tr>
-                    <tr>
-                        <td><strong>B1 (Středně pokročilý)</strong></td>
-                        <td>Použití Present Perfect: <code>I have lived here.</code></td>
-                        <td>1. Kdy použít: Pro děj, který ZAČAL v minulosti a stále TRVÁ v přítomnosti. <br>2. Tvorba: Vždy použij HAVE/HAS a TŘETÍ tvar slovesa (minulé příčestí). <br><strong>POZOR:</strong> Použij 'I lived here', když jsi se odstěhoval.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>C1 (Pokročilý)</strong></td>
-                        <td>Převod do Trpného Rodu: <code>The writer wrote the book.</code></td>
-                        <td>1. Nový Podmět: Původní předmět (the book) posuň na začátek. <br>2. To Be: Použij sloveso to be v původním čase (zde WAS). <br>3. Příčestí: Použij třetí tvar původního slovesa (written). <br>4. Sestavení: → The book was written.</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="help-box">
+            <h2>II. STŘEDNÍ ŠKOLA (SŠ) 🎓</h2>
+            <div class="table-wrapper">
+             <table>
+                 <thead>
+                     <tr>
+                         <th>Téma</th>
+                         <th>Matematika (Příklad)</th>
+                         <th>Vysvětlení Postupu (Polopaticky)</th>
+                         <th>Český Jazyk (Příklad)</th>
+                         <th>Vysvětlení Postupu (Polopaticky)</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td><strong>Algebra</strong></td>
+                         <td>Logaritmická Rovnice: <code>log₂(x-1) = 3</code></td>
+                         <td>1. PODMÍNKY: Argument (v závorce) musí být VŽDY kladný. Urči x > 1. <br>2. Převod: Přesuň základ logaritmu (2) na druhou stranu a UMOCNI ho (na 3). → x-1 = 2³. <br>3. Řešení a ověření: Vyřeš x-1 = 8 → x = 9. Zkontroluj, zda 9 splňuje x > 1.</td>
+                         <td>Tvorba Teze v Úvaze</td>
+                         <td>1. Teze (Jedna věta): Urči svůj hlavní názor. → CO CHCI DOKÁZAT? <br>2. Argumentace: Každý odstavec = jeden argument s důkazem. <br>3. Závěr: Znovu přeformuluj svoji tezi. <strong>POZOR:</strong> Neměň názor v průběhu psaní.</td>
+                     </tr>
+                     <tr>
+                         <td><strong>Kombinatorika</strong></td>
+                         <td>Výběr 3 lidí ze 7</td>
+                         <td>1. Klíčová Otázka: Záleží na pořadí? (Je výbor A,B,C jiný než B,C,A?). <br>2. Rozhodnutí: Pokud NE → Kombinace C. Pokud ANO → Variace V. <br>3. Výpočet: Kombinace znamená, že MUSÍŠ DĚLIT (vyloučit nechtěná pořadí).</td>
+                         <td>Literární Analýza (Kompozice)</td>
+                         <td>1. Rozbor Času: Plyne děj normálně (chronologicky)? Nebo se vrací do minulosti (retrospektiva)? <br>2. Struktura: Najdi začátek a konec. Zjisti, jestli děj stoupá (gradace). <strong>POZOR:</strong> V moderní literatuře se struktura často rozpadá.</td>
+                     </tr>
+                 </tbody>
+             </table>
+            </div>
+        </div>
+
+        <div class="help-box">
+            <h2>III. VYSOKÁ ŠKOLA (VŠ) 🧠</h2>
+            <div class="table-wrapper">
+            <table>
+                 <thead>
+                     <tr>
+                         <th>Obor</th>
+                         <th>Matematika (Příklad)</th>
+                         <th>Vysvětlení Postupu (Polopaticky)</th>
+                         <th>Český Jazyk (Příklad)</th>
+                         <th>Vysvětlení Postupu (Polopaticky)</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td><strong>Analýza</strong></td>
+                         <td>Derivace Složené Fce: <code>sin(x²)</code></td>
+                         <td>1. Vnější/Vnitřní: Urči vnější funkci (sin) a vnitřní (x²). <br>2. Krok 1: Derivuj VĚTŠÍ funkci (sin), ale VLOŽ do ní tu menší (→ cos(x²)). <br>3. Krok 2: Výsledek VYNÁSOB derivací té VNITŘNÍ funkce (x² → 2x). <br>4. Výsledek: <strong>2x · cos(x²)</strong>.</td>
+                         <td>Syntaktická Valenční Analýza: <code>darovat</code></td>
+                         <td>1. Centrum: Sloveso darovat je centrum věty. <br>2. Valenční Místa: Ptej se, kdo a co MUSÍ v té větě být. MUSÍ tam být dárce (Kdo?), darovaný (Komu?) a dar (Co?). <br>3. Pády: Urči pády (1., 3. a 4. pád). <br>4. Závěr: Sloveso je trojvalenční.</td>
+                     </tr>
+                 </tbody>
+             </table>
+            </div>
+        </div>
+
+        <div class="help-box">
+            <h2>IV. ANGLICKÝ JAZYK 🌐</h2>
+            <div class="table-wrapper">
+            <table>
+                 <thead>
+                     <tr>
+                         <th>Úroveň</th>
+                         <th>Téma a Příklad</th>
+                         <th>Vysvětlení Postupu (Polopaticky)</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td><strong>A1 (Základy)</strong></td>
+                         <td>Zápor v Present Simple: <code>She works here.</code></td>
+                         <td>1. Identifikace: Máme 3. osobu (She). <br>2. Pomocné Sloveso: Použij DOESN'T. <br>3. Základní Tvar: Odeber ze slovesa to S (z works udělej work). <br>4. Sestavení: → She doesn't work here. <strong>POZOR:</strong> Dvě 's' v jedné větě jsou chyba!</td>
+                     </tr>
+                     <tr>
+                         <td><strong>B1 (Středně pokročilý)</strong></td>
+                         <td>Použití Present Perfect: <code>I have lived here.</code></td>
+                         <td>1. Kdy použít: Pro děj, který ZAČAL v minulosti a stále TRVÁ v přítomnosti. <br>2. Tvorba: Vždy použij HAVE/HAS a TŘETÍ tvar slovesa (minulé příčestí). <br><strong>POZOR:</strong> Použij 'I lived here', když jsi se odstěhoval.</td>
+                     </tr>
+                     <tr>
+                         <td><strong>C1 (Pokročilý)</strong></td>
+                         <td>Převod do Trpného Rodu: <code>The writer wrote the book.</code></td>
+                         <td>1. Nový Podmět: Původní předmět (the book) posuň na začátek. <br>2. To Be: Použij sloveso to be v původním čase (zde WAS). <br>3. Příčestí: Použij třetí tvar původního slovesa (written). <br>4. Sestavení: → The book was written.</td>
+                     </tr>
+                 </tbody>
+             </table>
+            </div>
         </div>
     </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 LangLearn. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
     
-    <script src="app.js"></script>
-    <script>
-        // Malý skript pro načtení tématu i na této stránce
-        document.addEventListener('DOMContentLoaded', () => {
-            const preference = localStorage.getItem('themePreference');
-            const body = document.body;
-            body.classList.remove('dark-theme', 'light-theme');
-            if (preference === 'dark') {
-                body.classList.add('dark-theme');
-            } else {
-                body.classList.add('light-theme');
-            }
-        });
-    </script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => { loadTheme(); });
+    </script>
 </body>
 </html>
